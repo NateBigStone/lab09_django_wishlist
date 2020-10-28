@@ -1,3 +1,4 @@
 .idea
 venv/
 wishlist/wishlist/__pycache__/
+wishlist/travel_wishlist/__pycache__/
