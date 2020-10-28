@@ -61,3 +61,25 @@ class TestAddNewPlace(TestCase):
 
         tokyo_from_database = Place.objects.get(name="Tokyo", visited=False)
         self.assertEqual(tokyo_from_database, tokyo_from_response)
+
+
+class TestVisitPlace(TestCase):
+
+    fixtures = ['test_places']
+
+    def test_visit_place(self):
+
+        visit_place_url = reverse('place_was_visited', args=(2, ))
+        response = self.client.post(visit_place_url, follow=True)
+        self.assertTemplateUsed(response, 'travel_wishlist/wishlist.html')
+        self.assertNotContains(response, 'New York')
+        self.assertContains(response, 'Tokyo')
+
+        new_york = Place.objects.get(pk=2)
+        self.assertTrue(new_york.visited)
+
+    def test_non_existent_place(self):
+
+        visit_non_existent_place_url = reverse('place_was_visited', args=(123494, ))
+        response = self.client.post(visit_non_existent_place_url, follow=True)
+        self.assertEqual(404, response.status_code)
