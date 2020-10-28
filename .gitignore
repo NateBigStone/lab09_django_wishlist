@@ -3,4 +3,5 @@
 venv/
 wishlist/wishlist/__pycache__/
 wishlist/travel_wishlist/__pycache__/
+__pycache__/
 db.splite3
