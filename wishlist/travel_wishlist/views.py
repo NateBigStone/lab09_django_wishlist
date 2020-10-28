@@ -1,3 +1,7 @@
 from django.shortcuts import render
+from .models import Place
 
-# Create your views here.
+
+def place_list(r):
+    places = Place.objects.all()
+    return render(r, 'travel_wishlist/wishlist.html', {'places': places})
