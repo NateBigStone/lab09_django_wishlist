@@ -1,9 +1,11 @@
 *.pyc
 .idea
+*.log
+__pycache__/
 venv/
 wishlist/wishlist/__pycache__/
 wishlist/travel_wishlist/__pycache__/
-__pycache__/
 wishlist/db.sqlite3
-*.log
 wishlist/travel_wishlist/migrations/
+wishlist/media/
+wishlist/user_images/
