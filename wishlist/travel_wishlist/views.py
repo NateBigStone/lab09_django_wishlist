@@ -49,3 +49,15 @@ def about(r):
 def place_details(r, place_pk):
     place = get_object_or_404(Place, pk=place_pk)
     return render(r, 'travel_wishlist/place_detail.html', {'place': place})
+
+
+@login_required()
+def delete_place(r, place_pk):
+    place = get_object_or_404(Place, pk=place_pk)
+    if place.user == r.user:
+        place.delete()
+        return redirect('place_list')
+    else:
+        return HttpResponseForbidden()
+
+

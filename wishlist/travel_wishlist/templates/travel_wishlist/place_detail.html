@@ -1,5 +1,6 @@
 {% extends 'travel_wishlist/base.html' %}
 {% block content %}
+{% load static %}
 
 <h2>{{ place.name }}</h2>
 
@@ -14,4 +15,10 @@
     </form>
 {% endif %}
 
+<form action="{% url 'delete_place' place.pk %}" method="POST">
+    {% csrf_token %}
+    <button type="submit" class="delete">Delete</button>
+</form>
+
+<script src="{% static 'js/confirm_delete.js' %}"></script>
 {% endblock %}
