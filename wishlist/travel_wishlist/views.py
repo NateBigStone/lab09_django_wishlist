@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Place
-from .forms import NewPlaceForm
+from .forms import NewPlaceForm, TripReviewForm
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseForbidden
+from django.contrib import messages
 
 
 @login_required()
@@ -48,7 +49,22 @@ def about(r):
 @login_required()
 def place_details(r, place_pk):
     place = get_object_or_404(Place, pk=place_pk)
-    return render(r, 'travel_wishlist/place_detail.html', {'place': place})
+    if place.user != r.user:
+        return HttpResponseForbidden()
+    if r.method == 'POST':
+        form = TripReviewForm(r.POST, r.FILES, instance=place)
+        if form.is_valid():
+            form.save()
+            messages.info(r, 'Trip information updated')
+        else:
+            messages.error(r, form.errors)
+        return redirect('place_details', place_pk=place_pk)
+    else:
+        if place.visited:
+            review_form = TripReviewForm(instance=place)
+            return render(r, 'travel_wishlist/place_detail.html', {'place': place, 'review_form': review_form})
+        else:
+            return render(r, 'travel_wishlist/place_detail.html', {'place': place})
 
 
 @login_required()
