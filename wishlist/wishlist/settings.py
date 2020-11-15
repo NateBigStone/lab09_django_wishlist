@@ -26,7 +26,7 @@ SECRET_KEY = 'i_kb*ft27l_nfvbu00*1l(8_qg0c=ct1#g!ynhxzbkbr8r)4v)'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*", ]
 
 
 # Application definition
@@ -77,11 +77,17 @@ WSGI_APPLICATION = 'wishlist.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'places',
+        'USER': 'travel',
+        'PASSWORD': os.getenv('TRAVEL_PW'),
+        'HOST': '/cloudsql/wishlist-django-295704:us-central1:wishlist-db',
+        'PORT': '5432'
     }
 }
 
+if not os.getenv('GAE_INSTANCE'):
+    DATABASES['default']['HOST'] = '127.0.0.1'
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
@@ -120,6 +126,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+STATIC_ROOT = './www/static/'
 
 MEDIA_URL = '/media/'
 

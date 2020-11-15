@@ -9,3 +9,4 @@ wishlist/db.sqlite3
 wishlist/travel_wishlist/migrations/
 wishlist/media/
 wishlist/user_images/
+wishlist/cloud_sql_proxy
