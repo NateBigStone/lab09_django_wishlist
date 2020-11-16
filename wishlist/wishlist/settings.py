@@ -99,6 +99,8 @@ if not os.getenv('GAE_INSTANCE'):
             'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
         }
     }
+    # DATABASES['default']['HOST'] = '127.0.0.1'
+
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators

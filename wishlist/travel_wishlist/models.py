@@ -8,6 +8,13 @@ def delete_photo(photo):
         default_storage.delete(photo.name)
 
 
+class CatFact(models.Model):
+    fact = models.CharField(max_length=500)
+
+    def __str__(self):
+        return self.fact
+
+
 class Place(models.Model):
     user = models.ForeignKey('auth.User', null=False, on_delete=models.CASCADE)
     name = models.CharField(max_length=200)
