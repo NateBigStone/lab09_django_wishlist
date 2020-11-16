@@ -21,3 +21,5 @@ __pycache__/
 #Other
 db.sqlite3
 cloud_sql_proxy
+venv
+www

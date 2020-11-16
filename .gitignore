@@ -2,7 +2,7 @@
 .idea
 *.log
 __pycache__/
-venv/
+venv-old/
 wishlist/wishlist/__pycache__/
 wishlist/travel_wishlist/__pycache__/
 wishlist/db.sqlite3
@@ -10,3 +10,5 @@ wishlist/travel_wishlist/migrations/
 wishlist/media/
 wishlist/user_images/
 wishlist/cloud_sql_proxy
+wishlist/travcred.json
+wishlist/venv

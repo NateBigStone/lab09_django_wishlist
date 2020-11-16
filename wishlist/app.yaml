@@ -12,4 +12,4 @@ env_variables:
   TRAVEL_PW: password
 
 beta_settings:
-  cloud_sql_instances: wishlist-django:us-central1:wishlist-db
+  cloud_sql_instances: wishlist-django-295704:us-central1:wishlist-db
